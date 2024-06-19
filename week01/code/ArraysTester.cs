@@ -36,19 +36,19 @@ public static class ArraysTester
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     private static double[] MultiplesOf(double number, int length)
     {
-        //I will declare an array of doubles and will then loop the given number as many times as the given length prescribes. 
-        //During the loop it will first add the number to the array, then multiply it by itself. It will do this until it is the desired length.
-        //Then the loop will stop and it will return the array.
+        // I will declare an array of doubles and a new double called "total". I will then loop the given number as many times as the given length prescribes
+        // using "total" to add it up. During the loop it will first add the number to the array, then add it to itself. It will do this until it is the 
+        // desired length. Then the loop will stop and it will return the array.
 
-        var multiplesArray = new double[];
-
+        var multiplesArray = new double[length];
+        double total = number;
         for (int i = 0; i < length; i++)
         {
-            multiplesArray[i] = number;
-            number += number;
+            multiplesArray[i] = total;
+            total += number;
         }
 
-        return multiplesArray; // replace this return statement with your own
+        return multiplesArray;
     }
 
     /// <summary>
@@ -59,12 +59,24 @@ public static class ArraysTester
     /// <br /><br />
     /// Because a list is dynamic, this function will modify the existing <c>data</c> list rather than returning a new list.
     /// </summary>
-    private static void RotateListRight(List<int> data, int amount)
+    public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // I will write this function by creating a new list that will take the part of the list that the user wants to start 
+        // on using a loop with Add function. I will then add the beginning of the original list to the new list also using Add.
 
+        List<int> rotateList = new List<int>();
+
+        for (int i = 1; i <= amount; i++)
+        {
+            rotateList.Add(data[data.Count - 1 - (amount - i)]);
+        }
+
+
+        for (int i = 0; i < data.Count - amount; i++)
+        {
+            rotateList.Add(data[i]);
+        }
+
+        Console.WriteLine($"<List>{{{string.Join(',', rotateList)}}}");
     }
 }
